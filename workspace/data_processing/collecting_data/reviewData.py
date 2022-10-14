@@ -1,14 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-
-
-def load_image(i):
-    byte_img = tf.io.read_file(i)
-    img = tf.io.decode_jpeg(byte_img)
-    img = tf.image.resize(img, (224, 224))
-    img = img / 255
-    return img
+from src.utils import load_image
 
 images = tf.data.Dataset.list_files('data/plain/train/images/*.jpg')
 images = images.map(load_image)
